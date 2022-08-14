@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 export default function () {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Text>Search Screen</Text>
     </View>
   );
 }
