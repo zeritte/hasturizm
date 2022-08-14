@@ -10,6 +10,10 @@ import InboxScreen from './src/screens/InboxScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SelectLocationScreen from './src/screens/SelectLocationScreen';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+Ionicons.loadFont();
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -26,26 +30,25 @@ export default () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-      // TODO: solve react native vector icons issue
-      // screenOptions={({route}) => ({
-      //   tabBarIcon: ({focused, color, size}) => {
-      //     let iconName;
+        // TODO: solve react native vector icons issue
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
 
-      //     if (route.name === 'Sarch') {
-      //       iconName = focused
-      //         ? 'ios-information-circle'
-      //         : 'ios-information-circle-outline';
-      //     } else if (route.name === 'Publish') {
-      //       iconName = focused ? 'ios-list-box' : 'ios-list';
-      //     }
+            if (route.name === 'Search') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            } else if (route.name === 'Publish') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
 
-      //     // You can return any component that you like here!
-      //     return <Ionicons name={iconName} size={size} color={color} />;
-      //   },
-      //   tabBarActiveTintColor: 'tomato',
-      //   tabBarInactiveTintColor: 'gray',
-      // })}
-      >
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}>
         <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Publish" component={PublishScreen} />
         <Tab.Screen name="My Trips" component={MyTripsScreen} />
