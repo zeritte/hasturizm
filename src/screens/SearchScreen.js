@@ -1,12 +1,16 @@
 import {Button, Card} from '@rneui/themed';
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 Ionicons.loadFont();
 
 export default function ({navigation, props}) {
   return (
     <View>
+      <ImageBackground
+        source={require("../images/homeScreenBg.png")}
+        style={{ width: "100%", aspectRatio: 2, position: "absolute" }}
+      />
       <Card borderRadius={30} marginTop={150}>
         {/* <Text>{props.value}</Text> */}
         <TouchableOpacity
