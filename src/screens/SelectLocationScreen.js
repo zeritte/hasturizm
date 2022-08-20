@@ -1,9 +1,12 @@
-import {Button, SearchBar} from '@rneui/themed';
-import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+/* eslint-disable no-shadow */
+/* eslint-disable comma-dangle */
+/* eslint-disable quotes */
+import { Button, SearchBar } from "@rneui/themed";
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
 //search bar kullan
-export default function ({navigation}) {
-  const [search, setSearch] = useState('');
+export default function ({ navigation }) {
+  const [search, setSearch] = useState("");
   const updateSearch = search => {
     setSearch(search);
   };
@@ -18,7 +21,7 @@ export default function ({navigation}) {
         text={search}
       />
       <Button
-        onPress={() => navigation.navigate('SearchInsideStack')}
+        onPress={() => navigation.navigate("SearchInsideStack")}
         style={styles.button}
         flexWrap="wrap"
         title="Select"
@@ -29,8 +32,8 @@ export default function ({navigation}) {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 10,
-  },
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: 10
+  }
 });
