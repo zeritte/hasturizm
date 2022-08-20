@@ -2,7 +2,7 @@
 /* eslint-disable quotes */
 import { Button, Card } from "@rneui/themed";
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from "react-native";
+import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
 
@@ -13,7 +13,8 @@ export default function ({ navigation, props }) {
         source={require("../images/homeScreenBg.png")}
         style={{ width: "100%", aspectRatio: 2, position: "absolute" }}
       />
-      <Card borderRadius={30} marginTop={150}>
+      <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
+      <Card borderRadius={30} marginTop={100}>
         {/* <Text>{props.value}</Text> */}
         <TouchableOpacity
           style={styles.button}
@@ -39,14 +40,14 @@ export default function ({ navigation, props }) {
         <View style={styles.container}>
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity
-            style={styles.candidate}
+            style={styles.calendar}
             onPress={() => navigation.navigate("SearchLocation")}
           >
             <TextInput style={styles.text} placeholder="Tarih" />
           </TouchableOpacity>
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity
-            style={styles.candidate}
+            style={styles.calendar}
             onPress={() => navigation.navigate("SearchLocation")}
           >
             <TextInput style={styles.text} placeholder="Kişi" />
@@ -74,10 +75,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row"
   },
-  candidate: {
+  calendar: {
     alignItems: "center",
     backgroundColor: "white",
     padding: 10,
     flexBasis: 100
+  },
+  headerText: {
+    fontSize: 25,
+    color: "white",
+    textAlign: "center"
   }
 });
