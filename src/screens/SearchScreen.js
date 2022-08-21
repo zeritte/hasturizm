@@ -26,7 +26,7 @@ export default function ({ navigation, props }) {
     <View>
       <ImageBackground
         source={require("../images/homeScreenBg.png")}
-        style={{ width: "100%", aspectRatio: 2, position: "absolute" }}
+        style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
       <Card borderRadius={30} marginTop={100}>
@@ -97,5 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "white",
     textAlign: "center"
+  },
+  imageBackground: {
+    width: "100%",
+    aspectRatio: 2,
+    position: "absolute"
   }
 });
