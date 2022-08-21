@@ -1,8 +1,17 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-import { Button, Card } from "@rneui/themed";
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text } from "react-native";
+import { Card } from "@rneui/themed";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  ImageBackground,
+  Text,
+  Button
+} from "react-native";
+import DatePicker from "react-native-date-picker";
 import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
@@ -21,6 +30,9 @@ export default function ({ navigation, props }) {
     { key: index++, label: 9 },
     { key: index++, label: 10 },
   ];
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [myDateText, setMyDateText] = useState("Select Date");
 
   return (
     <View>
@@ -53,12 +65,25 @@ export default function ({ navigation, props }) {
         </TouchableOpacity>
         <View style={styles.container}>
           <Ionicons style={styles.icon} name="calendar-outline" />
-          <TouchableOpacity
-            style={styles.calendar}
-            onPress={() => navigation.navigate("SearchLocation")}
-          >
-            <TextInput style={styles.text} placeholder="Tarih" />
+          <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
+            <Text style={styles.text} onPress={() => setMyDateText(Date(setDate(date)))}>
+              {myDateText}
+            </Text>
           </TouchableOpacity>
+          <DatePicker
+            modal
+            mode="date"
+            date={date}
+            onDateChange={setDate}
+            open={open}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
           <Ionicons style={styles.icon} name="people-outline" />
           
           <TouchableOpacity style={styles.calendar}>
