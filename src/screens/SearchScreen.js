@@ -28,7 +28,7 @@ export default function ({ navigation, props }) {
     { key: index++, label: 7 },
     { key: index++, label: 8 },
     { key: index++, label: 9 },
-    { key: index++, label: 10 },
+    { key: index++, label: 10 }
   ];
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -85,9 +85,8 @@ export default function ({ navigation, props }) {
             }}
           />
           <Ionicons style={styles.icon} name="people-outline" />
-          
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} initValue="Select Person"></ModalSelector>
+            <ModalSelector data={person} initValue="Select Person" />
           </TouchableOpacity>
         </View>
         <Button style={styles.button} flexWrap="wrap" title="Search" />
@@ -102,12 +101,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   text: {
-    fontSize: 20,
-    color: "blue"
+    fontSize: 20
   },
   icon: {
     fontSize: 40,
-    flexBasis: 50
+    flexBasis: 40
   },
   container: {
     flexDirection: "row"
@@ -116,7 +114,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     padding: 10,
-    flexBasis: 100
+    flexBasis: 140
   },
   headerText: {
     fontSize: 25,
