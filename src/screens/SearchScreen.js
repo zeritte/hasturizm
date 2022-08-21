@@ -3,10 +3,25 @@
 import { Button, Card } from "@rneui/themed";
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text } from "react-native";
+import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
 
 export default function ({ navigation, props }) {
+  let index = 0;
+  const person = [
+    { key: index++, label: 1 },
+    { key: index++, label: 2 },
+    { key: index++, label: 3 },
+    { key: index++, label: 4 },
+    { key: index++, label: 5 },
+    { key: index++, label: 6 },
+    { key: index++, label: 7 },
+    { key: index++, label: 8 },
+    { key: index++, label: 9 },
+    { key: index++, label: 10 },
+  ];
+
   return (
     <View>
       <ImageBackground
@@ -15,7 +30,6 @@ export default function ({ navigation, props }) {
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
       <Card borderRadius={30} marginTop={100}>
-        {/* <Text>{props.value}</Text> */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("SearchLocation")}
@@ -46,11 +60,9 @@ export default function ({ navigation, props }) {
             <TextInput style={styles.text} placeholder="Tarih" />
           </TouchableOpacity>
           <Ionicons style={styles.icon} name="people-outline" />
-          <TouchableOpacity
-            style={styles.calendar}
-            onPress={() => navigation.navigate("SearchLocation")}
-          >
-            <TextInput style={styles.text} placeholder="Kişi" />
+          
+          <TouchableOpacity style={styles.calendar}>
+            <ModalSelector data={person} initValue="Select Person"></ModalSelector>
           </TouchableOpacity>
         </View>
         <Button style={styles.button} flexWrap="wrap" title="Search" />
