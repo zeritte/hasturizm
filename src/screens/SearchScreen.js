@@ -32,7 +32,7 @@ export default function ({ navigation, props }) {
   ];
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [myDateText, setMyDateText] = useState("Select Date");
+  const [confirm, setConfirm] = useState(false);
 
   return (
     <View>
@@ -66,12 +66,15 @@ export default function ({ navigation, props }) {
         <View style={styles.container}>
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
-            <Text style={styles.text} onPress={() => setMyDateText(Date(setDate(date)))}>
-              {myDateText}
+            <Text style={styles.text}>
+              {confirm === true
+                ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
+                : "Select Date"}
             </Text>
           </TouchableOpacity>
           <DatePicker
             modal
+            locale="tr"
             mode="date"
             date={date}
             onDateChange={setDate}
@@ -79,6 +82,7 @@ export default function ({ navigation, props }) {
             onConfirm={date => {
               setOpen(false);
               setDate(date);
+              setConfirm(true);
             }}
             onCancel={() => {
               setOpen(false);
