@@ -16,20 +16,21 @@ import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
 
-export default function ({ navigation, props }) {
-  let index = 0;
-  const person = [
-    { key: index++, label: 1 },
-    { key: index++, label: 2 },
-    { key: index++, label: 3 },
-    { key: index++, label: 4 },
-    { key: index++, label: 5 },
-    { key: index++, label: 6 },
-    { key: index++, label: 7 },
-    { key: index++, label: 8 },
-    { key: index++, label: 9 },
-    { key: index++, label: 10 }
-  ];
+let index = 0;
+const person = [
+  { key: (index = 1), label: 1 },
+  { key: (index = 2), label: 2 },
+  { key: (index = 3), label: 3 },
+  { key: (index = 4), label: 4 },
+  { key: (index = 5), label: 5 },
+  { key: (index = 6), label: 6 },
+  { key: (index = 7), label: 7 },
+  { key: (index = 8), label: 8 },
+  { key: (index = 9), label: 9 },
+  { key: (index = 10), label: 10 }
+];
+
+export default function ({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
