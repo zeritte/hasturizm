@@ -1,21 +1,48 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
-import { Button, Card } from "@rneui/themed";
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text } from "react-native";
+import { Card } from "@rneui/themed";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  ImageBackground,
+  Text,
+  Button
+} from "react-native";
+import DatePicker from "react-native-date-picker";
+import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
 
-export default function ({ navigation, props }) {
+let index = 0;
+const person = [
+  { key: (index = 1), label: 1 },
+  { key: (index = 2), label: 2 },
+  { key: (index = 3), label: 3 },
+  { key: (index = 4), label: 4 },
+  { key: (index = 5), label: 5 },
+  { key: (index = 6), label: 6 },
+  { key: (index = 7), label: 7 },
+  { key: (index = 8), label: 8 },
+  { key: (index = 9), label: 9 },
+  { key: (index = 10), label: 10 }
+];
+
+export default function ({ navigation }) {
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
   return (
     <View>
       <ImageBackground
         source={require("../images/homeScreenBg.png")}
-        style={{ width: "100%", aspectRatio: 2, position: "absolute" }}
+        style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
       <Card borderRadius={30} marginTop={100}>
-        {/* <Text>{props.value}</Text> */}
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("SearchLocation")}
@@ -39,18 +66,32 @@ export default function ({ navigation, props }) {
         </TouchableOpacity>
         <View style={styles.container}>
           <Ionicons style={styles.icon} name="calendar-outline" />
-          <TouchableOpacity
-            style={styles.calendar}
-            onPress={() => navigation.navigate("SearchLocation")}
-          >
-            <TextInput style={styles.text} placeholder="Tarih" />
+          <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
+            <Text style={styles.text}>
+              {confirm === true
+                ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
+                : "Select Date"}
+            </Text>
           </TouchableOpacity>
+          <DatePicker
+            modal
+            locale="tr"
+            mode="date"
+            date={date}
+            onDateChange={setDate}
+            open={open}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+              setConfirm(true);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
           <Ionicons style={styles.icon} name="people-outline" />
-          <TouchableOpacity
-            style={styles.calendar}
-            onPress={() => navigation.navigate("SearchLocation")}
-          >
-            <TextInput style={styles.text} placeholder="Kişi" />
+          <TouchableOpacity style={styles.calendar}>
+            <ModalSelector data={person} initValue="Select Person" />
           </TouchableOpacity>
         </View>
         <Button style={styles.button} flexWrap="wrap" title="Search" />
@@ -65,12 +106,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   text: {
-    fontSize: 20,
-    color: "blue"
+    fontSize: 20
   },
   icon: {
     fontSize: 40,
-    flexBasis: 50
+    flexBasis: 40
   },
   container: {
     flexDirection: "row"
@@ -79,11 +119,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     padding: 10,
-    flexBasis: 100
+    flexBasis: 140
   },
   headerText: {
     fontSize: 25,
     color: "white",
     textAlign: "center"
+  },
+  imageBackground: {
+    width: "100%",
+    aspectRatio: 2,
+    position: "absolute"
   }
 });
