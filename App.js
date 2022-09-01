@@ -10,6 +10,7 @@ import MyTripsScreen from "./src/screens/MyTripsScreen";
 import InboxScreen from "./src/screens/InboxScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import SelectLocationScreen from "./src/screens/SelectLocationScreen";
+import MapScreen from "./src/screens/MapScreen";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -23,6 +24,7 @@ function SearchStackScreen() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SearchInsideStack" component={SearchScreen} />
       <Stack.Screen name="SearchLocation" component={SelectLocationScreen} />
+      <Stack.Screen name="MapScreen" component={MapScreen} />
     </Stack.Navigator>
   );
 }
