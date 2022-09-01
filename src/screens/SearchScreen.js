@@ -93,7 +93,12 @@ export default function ({ navigation }) {
             <ModalSelector data={person} initValue="Select Person" />
           </TouchableOpacity>
         </View>
-        <Button style={styles.button} flexWrap="wrap" title="Search" />
+        <Button
+          style={styles.button}
+          flexWrap="wrap"
+          title="Search"
+          onPress={() => navigation.navigate("MapScreen")}
+        />
       </Card>
     </View>
   );
