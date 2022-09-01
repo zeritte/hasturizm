@@ -16,18 +16,17 @@ import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
 
-let index = 0;
 const person = [
-  { key: (index = 1), label: 1 },
-  { key: (index = 2), label: 2 },
-  { key: (index = 3), label: 3 },
-  { key: (index = 4), label: 4 },
-  { key: (index = 5), label: 5 },
-  { key: (index = 6), label: 6 },
-  { key: (index = 7), label: 7 },
-  { key: (index = 8), label: 8 },
-  { key: (index = 9), label: 9 },
-  { key: (index = 10), label: 10 }
+  { key: 1, label: 1 },
+  { key: 2, label: 2 },
+  { key: 3, label: 3 },
+  { key: 4, label: 4 },
+  { key: 5, label: 5 },
+  { key: 6, label: 6 },
+  { key: 7, label: 7 },
+  { key: 8, label: 8 },
+  { key: 9, label: 9 },
+  { key: 10, label: 10 }
 ];
 
 export default function ({ navigation }) {
