@@ -18,6 +18,14 @@ export default function () {
           longitudeDelta: 0.0421
         }}
       >
+        <Polyline
+          coordinates={[
+            { latitude: 38.355363, longitude: 38.333525 },
+            { latitude: 39.866667, longitude: 32.866667 },
+          ]}
+          strokeColor="red"
+          strokeWidth={6}
+        />
         <Marker
           coordinate={{ latitude: 38.355363, longitude: 38.333525 }}
           title={"title"}
