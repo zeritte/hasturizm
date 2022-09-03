@@ -1,5 +1,3 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
 import { Card } from "@rneui/themed";
 import React, { useState } from "react";
 import {
