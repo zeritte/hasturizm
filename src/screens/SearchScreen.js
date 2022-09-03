@@ -1,4 +1,4 @@
-import { Card } from "@rneui/themed";
+import { Button, Card } from "@rneui/themed";
 import React, { useState } from "react";
 import {
   View,
@@ -7,7 +7,6 @@ import {
   TextInput,
   ImageBackground,
   Text,
-  Button
 } from "react-native";
 import DatePicker from "react-native-date-picker";
 import ModalSelector from "react-native-modal-selector";
