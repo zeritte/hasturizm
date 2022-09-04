@@ -1,10 +1,7 @@
-/* eslint-disable no-shadow */
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
 import { Button, SearchBar } from "@rneui/themed";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-//search bar kullan
+
 export default function ({ navigation }) {
   const [search, setSearch] = useState("");
   const updateSearch = search => {

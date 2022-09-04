@@ -1,6 +1,4 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable quotes */
-import { Card } from "@rneui/themed";
+import { Button, Card } from "@rneui/themed";
 import React, { useState } from "react";
 import {
   View,
@@ -9,7 +7,6 @@ import {
   TextInput,
   ImageBackground,
   Text,
-  Button
 } from "react-native";
 import DatePicker from "react-native-date-picker";
 import ModalSelector from "react-native-modal-selector";
@@ -93,7 +90,12 @@ export default function ({ navigation }) {
             <ModalSelector data={person} initValue="Select Person" />
           </TouchableOpacity>
         </View>
-        <Button style={styles.button} flexWrap="wrap" title="Search" />
+        <Button
+          style={styles.button}
+          flexWrap="wrap"
+          title="Search"
+          onPress={() => navigation.navigate("MapScreen")}
+        />
       </Card>
     </View>
   );
