@@ -9,6 +9,7 @@ import {
   Text,
 } from "react-native";
 import DatePicker from "react-native-date-picker";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 Ionicons.loadFont();
@@ -38,6 +39,17 @@ export default function ({ navigation }) {
         style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
+      <GooglePlacesAutocomplete
+      placeholder='Search'
+      autoFillOnNotFound={false}
+      onPress={(data, details = null) => {
+        console.log(data, details);
+      }}
+      query={{
+        key: "${REACT_NATIVE_MAP_API_KEY}",
+        language: 'tr',
+      }}
+    />
       <Card borderRadius={30} marginTop={100}>
         <TouchableOpacity
           style={styles.button}
@@ -91,6 +103,12 @@ export default function ({ navigation }) {
           </TouchableOpacity>
         </View>
         <Button
+          style={styles.button}
+          flexWrap="wrap"
+          title="Search"
+          onPress={() => navigation.navigate("MapScreen")}
+        />
+         <Button
           style={styles.button}
           flexWrap="wrap"
           title="Search"
