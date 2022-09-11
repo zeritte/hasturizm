@@ -12,6 +12,8 @@ import DatePicker from "react-native-date-picker";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import config from "react-native-ultimate-config";
+
 Ionicons.loadFont();
 
 const person = [
@@ -46,7 +48,7 @@ export default function ({ navigation }) {
         console.log(data, details);
       }}
       query={{
-        key: "${REACT_NATIVE_MAP_API_KEY}",
+        key: config.REACT_NATIVE_MAP_API_KEY,
         language: 'tr',
       }}
     />
