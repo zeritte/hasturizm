@@ -14,6 +14,8 @@ import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import config from "react-native-ultimate-config";
 
+console.log(config.REACT_NATIVE_MAP_API_KEY)
+
 Ionicons.loadFont();
 
 const person = [
@@ -41,17 +43,6 @@ export default function ({ navigation }) {
         style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
-      <GooglePlacesAutocomplete
-      placeholder='Search'
-      autoFillOnNotFound={false}
-      onPress={(data, details = null) => {
-        console.log(data, details);
-      }}
-      query={{
-        key: config.REACT_NATIVE_MAP_API_KEY,
-        language: 'tr',
-      }}
-    />
       <Card borderRadius={30} marginTop={100}>
         <TouchableOpacity
           style={styles.button}
@@ -105,12 +96,6 @@ export default function ({ navigation }) {
           </TouchableOpacity>
         </View>
         <Button
-          style={styles.button}
-          flexWrap="wrap"
-          title="Search"
-          onPress={() => navigation.navigate("MapScreen")}
-        />
-         <Button
           style={styles.button}
           flexWrap="wrap"
           title="Search"
