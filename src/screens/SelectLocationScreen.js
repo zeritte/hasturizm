@@ -5,10 +5,8 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import config from "react-native-ultimate-config";
 
 export default function ({ navigation }) {
-  const [search, setSearch] = useState("");
-  const updateSearch = search => {
-    setSearch(search);
-  };
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   return (
     // <View>
     //   <Text>Select Location Screen</Text>
@@ -16,10 +14,15 @@ export default function ({ navigation }) {
       <GooglePlacesAutocomplete
         placeholder="SearchMalatya"
         autoFillOnNotFound={false}
+        fetchDetails={true}
         onFail={console.warn}
         onNotFound={console.warn}
         onPress={(data, details = null) => {
-          console.log(data, details);
+          setLatitude(details.geometry.location.lat);
+          setLongitude(details.geometry.location.lng);    
+          console.log(data, details.geometry.location);
+          console.log(details.geometry.location.lat);
+          console.log(details.geometry.location.lng);
         }}
         query={{
           key: config.REACT_NATIVE_MAP_API_KEY,
