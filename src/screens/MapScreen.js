@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
+import config from "react-native-ultimate-config";
 
 const MALATYA_LOCATION = {latitude: 38.355363, longitude: 38.333525}
 const ANKARA_LOCATION = {latitude: 39.866667, longitude: 32.866667}
@@ -16,7 +18,14 @@ export default function () {
         style={styles.map}
         initialRegion={initialRegion}
       >
-        <Polyline
+         <MapViewDirections
+          origin={MALATYA_LOCATION}
+          destination={ANKARA_LOCATION}         
+          apikey={config.REACT_NATIVE_MAP_API_KEY}
+          strokeWidth={4}
+          strokeColor="#111111"
+        />
+        {/* <Polyline
           coordinates={[MALATYA_LOCATION, ANKARA_LOCATION]}
           strokeColor="red"
           strokeWidth={6}
@@ -30,7 +39,7 @@ export default function () {
           coordinate={ANKARA_LOCATION}
           title={'title'}
           description={'Ankara'}
-        />
+        /> */}
       </MapView>
     </View>
   );
