@@ -9,12 +9,9 @@ import {
   Text,
 } from "react-native";
 import DatePicker from "react-native-date-picker";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import config from "react-native-ultimate-config";
-
-console.log(config.REACT_NATIVE_MAP_API_KEY)
 
 Ionicons.loadFont();
 
