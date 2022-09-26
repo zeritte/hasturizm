@@ -11,6 +11,8 @@ import {
 import DatePicker from "react-native-date-picker";
 import ModalSelector from "react-native-modal-selector";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import config from "react-native-ultimate-config";
+
 Ionicons.loadFont();
 
 const person = [

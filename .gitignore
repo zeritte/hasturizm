@@ -64,3 +64,6 @@ buck-out/
 
 # Api Keys
 /.env
+
+# react-native-ultimate-config
+rnuc.xcconfig
