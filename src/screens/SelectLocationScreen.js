@@ -7,8 +7,25 @@ import { useDispatch } from 'react-redux';
 
 import searchSlice from '../slices/search';
 
-export default function SelectLocationScreen({ navigation }) {
+export default function SelectLocationScreen({ navigation, route }) {
+  const selectionType = route.params?.selectionType;
   const dispatch = useDispatch();
+
+  const onSelect = (details) => {
+    const value = {
+      lat: details.geometry.location.lat,
+      long: details.geometry.location.lng,
+      name: details.name,
+    };
+
+    if (selectionType === 'departure') {
+      dispatch(searchSlice.actions.setDepartureLocation(value));
+    } else if (selectionType === 'arrival') {
+      dispatch(searchSlice.actions.setArrivalLocation(value));
+    } else {
+      throw new Error('Unknown selection type');
+    }
+  };
 
   return (
     <>
@@ -18,19 +35,13 @@ export default function SelectLocationScreen({ navigation }) {
         fetchDetails
         onFail={console.warn}
         onNotFound={console.warn}
-        onPress={(data, details = null) => {
-          console.log(data, details.geometry.location);
-          dispatch(searchSlice.actions.setArrivalLocation({
-            lat: details.geometry.location.lat,
-            long: details.geometry.location.lng,
-          }));
-        }}
+        onPress={(_, details) => onSelect(details)}
         query={{
           key: config.REACT_NATIVE_MAP_API_KEY,
         }}
       />
       <Button
-        onPress={() => navigation.navigate('SearchInsideStack')}
+        onPress={navigation.goBack}
         style={styles.button}
         flexWrap="wrap"
         title="Select"

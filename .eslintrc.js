@@ -15,7 +15,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'arrow-body-style': 0,
     'react/react-in-jsx-scope': 0,
     'import/order': ['error', {
       alphabetize: {
