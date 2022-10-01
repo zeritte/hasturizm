@@ -33,7 +33,6 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0 }],
     'no-nested-ternary': 0,
     'no-use-before-define': 0,
-    'no-unused-vars': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-props-no-spreading': 0,
     'react/no-unescaped-entities': 0,

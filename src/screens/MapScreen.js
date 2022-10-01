@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import MapView, { Marker, Polyline } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from 'react-native-ultimate-config';
 
