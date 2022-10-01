@@ -1,6 +1,4 @@
-import { Button } from '@rneui/themed';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import config from 'react-native-ultimate-config';
 import { useDispatch } from 'react-redux';
@@ -25,6 +23,8 @@ export default function SelectLocationScreen({ navigation, route }) {
     } else {
       throw new Error('Unknown selection type');
     }
+
+    navigation.goBack();
   };
 
   return (
@@ -40,20 +40,7 @@ export default function SelectLocationScreen({ navigation, route }) {
           key: config.REACT_NATIVE_MAP_API_KEY,
         }}
       />
-      <Button
-        onPress={navigation.goBack}
-        style={styles.button}
-        flexWrap="wrap"
-        title="Select"
-      />
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 10,
-  },
-});
