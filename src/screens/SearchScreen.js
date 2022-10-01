@@ -1,19 +1,15 @@
-import { Button, Card } from "@rneui/themed";
-import React, { useState } from "react";
+import { Button, Card } from '@rneui/themed';
+import React, { useState } from 'react';
 import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  ImageBackground,
-  Text,
-} from "react-native";
-import DatePicker from "react-native-date-picker";
-import ModalSelector from "react-native-modal-selector";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import config from "react-native-ultimate-config";
+  View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text,
+} from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import ModalSelector from 'react-native-modal-selector';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector } from 'react-redux';
 
-Ionicons.loadFont();
+import HomeScreenBg from '../images/homeScreenBg.png';
+import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
 
 const person = [
   { key: 1, label: 1 },
@@ -25,10 +21,12 @@ const person = [
   { key: 7, label: 7 },
   { key: 8, label: 8 },
   { key: 9, label: 9 },
-  { key: 10, label: 10 }
+  { key: 10, label: 10 },
 ];
 
-export default function ({ navigation }) {
+export default function SearchScreen({ navigation }) {
+  const departureLocation = useSelector(departureLocationSelector);
+  const arrivalLocation = useSelector(arrivalLocationSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -36,30 +34,30 @@ export default function ({ navigation }) {
   return (
     <View>
       <ImageBackground
-        source={require("../images/homeScreenBg.png")}
+        source={HomeScreenBg}
         style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
       <Card borderRadius={30} marginTop={100}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("SearchLocation")}
+          onPress={() => navigation.navigate('SearchLocation', { selectionType: 'departure' })}
         >
           <TextInput
             style={styles.text}
             inlineImageLeft="search_icon"
             placeholder="Kalkış Yeri"
-            onPressIn={() => navigation.navigate("SearchLocation")}
+            value={departureLocation?.name}
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("SearchLocation")}
+          onPress={() => navigation.navigate('SearchLocation', { selectionType: 'arrival' })}
         >
           <TextInput
             style={styles.text}
             placeholder="Varış Yeri"
-            onPressIn={() => navigation.navigate("SearchLocation")}
+            value={arrivalLocation?.name}
           />
         </TouchableOpacity>
         <View style={styles.container}>
@@ -68,7 +66,7 @@ export default function ({ navigation }) {
             <Text style={styles.text}>
               {confirm === true
                 ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
-                : "Select Date"}
+                : 'Select Date'}
             </Text>
           </TouchableOpacity>
           <DatePicker
@@ -78,9 +76,9 @@ export default function ({ navigation }) {
             date={date}
             onDateChange={setDate}
             open={open}
-            onConfirm={date => {
+            onConfirm={(value) => {
               setOpen(false);
-              setDate(date);
+              setDate(value);
               setConfirm(true);
             }}
             onCancel={() => {
@@ -96,7 +94,8 @@ export default function ({ navigation }) {
           style={styles.button}
           flexWrap="wrap"
           title="Search"
-          onPress={() => navigation.navigate("MapScreen")}
+          onPress={() => navigation.navigate('MapScreen')}
+          disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
     </View>
@@ -104,34 +103,34 @@ export default function ({ navigation }) {
 }
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 10,
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
   },
   icon: {
     fontSize: 40,
-    flexBasis: 40
+    flexBasis: 40,
   },
   container: {
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   calendar: {
-    alignItems: "center",
-    backgroundColor: "white",
+    alignItems: 'center',
+    backgroundColor: 'white',
     padding: 10,
-    flexBasis: 140
+    flexBasis: 140,
   },
   headerText: {
     fontSize: 25,
-    color: "white",
-    textAlign: "center"
+    color: 'white',
+    textAlign: 'center',
   },
   imageBackground: {
-    width: "100%",
+    width: '100%',
     aspectRatio: 2,
-    position: "absolute"
-  }
+    position: 'absolute',
+  },
 });

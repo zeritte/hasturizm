@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-export default function () {
+export default function InboxScren() {
   return (
     <View>
       <Text>Inbox Screen</Text>

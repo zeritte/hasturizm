@@ -1,47 +1,46 @@
-import { Button, SearchBar } from "@rneui/themed";
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import config from "react-native-ultimate-config";
+import React from 'react';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import config from 'react-native-ultimate-config';
+import { useDispatch } from 'react-redux';
 
-export default function ({ navigation }) {
+import searchSlice from '../slices/search';
 
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+export default function SelectLocationScreen({ navigation, route }) {
+  const selectionType = route.params?.selectionType;
+  const dispatch = useDispatch();
+
+  const onSelect = (details) => {
+    const value = {
+      latitude: details.geometry.location.lat,
+      longitude: details.geometry.location.lng,
+      name: details.name,
+    };
+
+    if (selectionType === 'departure') {
+      dispatch(searchSlice.actions.setDepartureLocation(value));
+    } else if (selectionType === 'arrival') {
+      dispatch(searchSlice.actions.setArrivalLocation(value));
+    } else {
+      throw new Error('Unknown selection type');
+    }
+
+    navigation.goBack();
+  };
+
   return (
-      <>
-        <GooglePlacesAutocomplete
+    <>
+      <GooglePlacesAutocomplete
         placeholder="Search"
         autoFillOnNotFound={false}
-        fetchDetails={true}
+        fetchDetails
         onFail={console.warn}
         onNotFound={console.warn}
-        onPress={(data, details = null) => {     
-          setLatitude(details.geometry.location.lat);
-          setLongitude(details.geometry.location.lng);    
-          console.log(data, details.geometry.location);
-          console.log(details.geometry.location.lat);
-          console.log(details.geometry.location.lng);
-        }}
+        onPress={(_, details) => onSelect(details)}
         query={{
           key: config.REACT_NATIVE_MAP_API_KEY,
         }}
       />
-      <Button
-        onPress={() => navigation.navigate("SearchInsideStack")}
-        style={styles.button}
-        flexWrap="wrap"
-        title="Select"
-      /> 
-      </>
-          
-  )
+    </>
+  );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10
-  }
-});
