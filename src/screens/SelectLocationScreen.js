@@ -11,8 +11,8 @@ export default function SelectLocationScreen({ navigation, route }) {
 
   const onSelect = (details) => {
     const value = {
-      lat: details.geometry.location.lat,
-      long: details.geometry.location.lng,
+      latitude: details.geometry.location.lat,
+      longitude: details.geometry.location.lng,
       name: details.name,
     };
 
