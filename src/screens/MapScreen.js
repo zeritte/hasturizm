@@ -3,21 +3,23 @@ import { View, Text, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from 'react-native-ultimate-config';
+import { useSelector } from 'react-redux';
 
-const MALATYA_LOCATION = { latitude: 38.355363, longitude: 38.333525 };
-const ANKARA_LOCATION = { latitude: 39.866667, longitude: 32.866667 };
-const INITIAL_DELTAS = { latitudeDelta: 0.0922, longitudeDelta: 0.0421 };
+import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
 
-const initialRegion = { ...MALATYA_LOCATION, ...INITIAL_DELTAS };
+const INITIAL_DELTAS = { latitudeDelta: 1, longitudeDelta: 1 };
 
 export default function MapScreen() {
+  const departureLocation = useSelector(departureLocationSelector);
+  const arrivalLocation = useSelector(arrivalLocationSelector);
+
   return (
     <View>
       <Text>Map Screen</Text>
-      <MapView style={styles.map} initialRegion={initialRegion}>
+      <MapView style={styles.map} initialRegion={{ ...departureLocation, ...INITIAL_DELTAS }}>
         <MapViewDirections
-          origin={MALATYA_LOCATION}
-          destination={ANKARA_LOCATION}
+          origin={departureLocation}
+          destination={arrivalLocation}
           apikey={config.REACT_NATIVE_MAP_API_KEY}
           strokeWidth={4}
           strokeColor="#111111"
