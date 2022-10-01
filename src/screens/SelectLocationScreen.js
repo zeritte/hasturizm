@@ -1,24 +1,24 @@
-import { Button, SearchBar } from "@rneui/themed";
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import config from "react-native-ultimate-config";
+import { Button, SearchBar } from '@rneui/themed';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import config from 'react-native-ultimate-config';
 
-export default function ({ navigation }) {
+export default function SelectLocationScreen({ navigation }) {
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
   return (
-      <>
-        <GooglePlacesAutocomplete
+    <>
+      <GooglePlacesAutocomplete
         placeholder="Search"
         autoFillOnNotFound={false}
-        fetchDetails={true}
+        fetchDetails
         onFail={console.warn}
         onNotFound={console.warn}
-        onPress={(data, details = null) => {     
+        onPress={(data, details = null) => {
           setLatitude(details.geometry.location.lat);
-          setLongitude(details.geometry.location.lng);    
+          setLongitude(details.geometry.location.lng);
           console.log(data, details.geometry.location);
           console.log(details.geometry.location.lat);
           console.log(details.geometry.location.lng);
@@ -28,20 +28,19 @@ export default function ({ navigation }) {
         }}
       />
       <Button
-        onPress={() => navigation.navigate("SearchInsideStack")}
+        onPress={() => navigation.navigate('SearchInsideStack')}
         style={styles.button}
         flexWrap="wrap"
         title="Select"
-      /> 
-      </>
-          
-  )
+      />
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10
-  }
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+  },
 });
