@@ -8,7 +8,7 @@ const initialState = {
   arrivalLocation: null,
 };
 
-export const counterSlice = createSlice({
+const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
@@ -21,4 +21,4 @@ export const counterSlice = createSlice({
   },
 });
 
-export default counterSlice;
+export default searchSlice;

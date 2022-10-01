@@ -1,12 +1,14 @@
 import { Button } from '@rneui/themed';
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import config from 'react-native-ultimate-config';
+import { useDispatch } from 'react-redux';
+
+import searchSlice from '../slices/search';
 
 export default function SelectLocationScreen({ navigation }) {
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -17,11 +19,11 @@ export default function SelectLocationScreen({ navigation }) {
         onFail={console.warn}
         onNotFound={console.warn}
         onPress={(data, details = null) => {
-          setLatitude(details.geometry.location.lat);
-          setLongitude(details.geometry.location.lng);
           console.log(data, details.geometry.location);
-          console.log(details.geometry.location.lat);
-          console.log(details.geometry.location.lng);
+          dispatch(searchSlice.actions.setArrivalLocation({
+            lat: details.geometry.location.lat,
+            long: details.geometry.location.lng,
+          }));
         }}
         query={{
           key: config.REACT_NATIVE_MAP_API_KEY,
