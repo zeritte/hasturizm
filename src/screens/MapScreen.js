@@ -24,21 +24,6 @@ export default function MapScreen() {
           strokeWidth={4}
           strokeColor="#111111"
         />
-        {/* <Polyline
-          coordinates={[MALATYA_LOCATION, ANKARA_LOCATION]}
-          strokeColor="red"
-          strokeWidth={6}
-        />
-        <Marker
-          coordinate={MALATYA_LOCATION}
-          title={'title'}
-          description={'Malatya'}
-        />
-        <Marker
-          coordinate={ANKARA_LOCATION}
-          title={'title'}
-          description={'Ankara'}
-        /> */}
       </MapView>
     </View>
   );
