@@ -87,7 +87,7 @@ export default function SearchScreen({ navigation }) {
           />
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} initValue="Select Person" />
+            <ModalSelector data={person} selectedKey={1} />
           </TouchableOpacity>
         </View>
         <Button
@@ -95,7 +95,7 @@ export default function SearchScreen({ navigation }) {
           flexWrap="wrap"
           title="Search"
           onPress={() => navigation.navigate('MapScreen')}
-          disabled={arrivalLocation === null || departureLocation === null || confirm === false}
+          disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
     </View>
