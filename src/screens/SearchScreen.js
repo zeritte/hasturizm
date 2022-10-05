@@ -66,7 +66,7 @@ export default function SearchScreen({ navigation }) {
             <Text style={styles.text}>
               {confirm === true
                 ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
-                : 'Select Date'}
+                : `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`}
             </Text>
           </TouchableOpacity>
           <DatePicker
