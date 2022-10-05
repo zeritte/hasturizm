@@ -95,7 +95,7 @@ export default function SearchScreen({ navigation }) {
           flexWrap="wrap"
           title="Search"
           onPress={() => navigation.navigate('MapScreen')}
-          disabled={arrivalLocation === null || departureLocation === null}
+          disabled={arrivalLocation === null || departureLocation === null || confirm === false}
         />
       </Card>
     </View>
