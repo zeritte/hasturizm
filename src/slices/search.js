@@ -6,6 +6,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   departureLocation: null,
   arrivalLocation: null,
+  previousSearchs: [],
 };
 
 const searchSlice = createSlice({
@@ -18,6 +19,12 @@ const searchSlice = createSlice({
     setArrivalLocation: (state, action) => {
       state.arrivalLocation = action.payload;
     },
+    // setPreviousSearchs: (state, action) => {
+    //   state.previousSearchs = action.payload;
+    //   state.departureLocation = action.payload;
+    //   // const newRecord = { arrivalLocation: state.arrivalLocation, departureLocation: state.departureLocation };
+    //   // state.push(previousSearchs(newRecord));
+    // },
   },
 });
 
