@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import PreviousSearchs from '../components/PreviousSearchs';
 import HomeScreenBg from '../images/homeScreenBg.png';
 import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
+import { addSearch } from '../slices/search';
 
 const person = [
   { key: 1, label: 1 },
