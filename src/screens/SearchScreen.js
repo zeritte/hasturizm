@@ -6,7 +6,7 @@ import {
 import DatePicker from 'react-native-date-picker';
 import ModalSelector from 'react-native-modal-selector';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PreviousSearchs from '../components/PreviousSearchs';
 import HomeScreenBg from '../images/homeScreenBg.png';
@@ -32,6 +32,17 @@ export default function SearchScreen({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const dispatch = useDispatch();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(
+      addSearch({
+        depreture: departureLocation,
+        arrival: arrivalLocation,
+      }),
+    );
+  };
 
   return (
     <View>
@@ -96,7 +107,8 @@ export default function SearchScreen({ navigation }) {
           style={styles.button}
           flexWrap="wrap"
           title="Search"
-          onPress={() => navigation.navigate('MapScreen')}
+          // onPress={() => navigation.navigate('MapScreen')}
+          onPress={onSubmit}
           disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
