@@ -6,10 +6,12 @@ import {
 import DatePicker from 'react-native-date-picker';
 import ModalSelector from 'react-native-modal-selector';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import PreviousSearchs from '../components/PreviousSearchs';
 import HomeScreenBg from '../images/homeScreenBg.png';
 import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
+import { addSearch } from '../slices/search';
 
 const person = [
   { key: 1, label: 1 },
@@ -29,7 +31,17 @@ export default function SearchScreen({ navigation }) {
   const arrivalLocation = useSelector(arrivalLocationSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const dispatch = useDispatch();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(
+      addSearch({
+        depreture: departureLocation,
+        arrival: arrivalLocation,
+      }),
+    );
+  };
 
   return (
     <View>
@@ -64,9 +76,7 @@ export default function SearchScreen({ navigation }) {
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
             <Text style={styles.text}>
-              {confirm === true
-                ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
-                : 'Select Date'}
+              {`${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`}
             </Text>
           </TouchableOpacity>
           <DatePicker
@@ -79,7 +89,6 @@ export default function SearchScreen({ navigation }) {
             onConfirm={(value) => {
               setOpen(false);
               setDate(value);
-              setConfirm(true);
             }}
             onCancel={() => {
               setOpen(false);
@@ -87,17 +96,19 @@ export default function SearchScreen({ navigation }) {
           />
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} initValue="Select Person" />
+            <ModalSelector data={person} selectedKey={1} />
           </TouchableOpacity>
         </View>
         <Button
           style={styles.button}
           flexWrap="wrap"
           title="Search"
-          onPress={() => navigation.navigate('MapScreen')}
+          // onPress={() => navigation.navigate('MapScreen')}
+          onPress={onSubmit}
           disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
+      <PreviousSearchs />
     </View>
   );
 }
