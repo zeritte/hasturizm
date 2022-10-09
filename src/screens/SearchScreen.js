@@ -31,7 +31,6 @@ export default function SearchScreen({ navigation }) {
   const arrivalLocation = useSelector(arrivalLocationSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [confirm, setConfirm] = useState(false);
   const dispatch = useDispatch();
 
   const onSubmit = (event) => {
@@ -77,9 +76,7 @@ export default function SearchScreen({ navigation }) {
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
             <Text style={styles.text}>
-              {confirm === true
-                ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
-                : 'Select Date'}
+              {`${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`}
             </Text>
           </TouchableOpacity>
           <DatePicker
@@ -92,7 +89,6 @@ export default function SearchScreen({ navigation }) {
             onConfirm={(value) => {
               setOpen(false);
               setDate(value);
-              setConfirm(true);
             }}
             onCancel={() => {
               setOpen(false);
@@ -100,7 +96,7 @@ export default function SearchScreen({ navigation }) {
           />
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} initValue="Select Person" />
+            <ModalSelector data={person} selectedKey={1} />
           </TouchableOpacity>
         </View>
         <Button
