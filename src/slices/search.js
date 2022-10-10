@@ -19,21 +19,16 @@ const searchSlice = createSlice({
     setArrivalLocation: (state, action) => {
       state.arrivalLocation = action.payload;
     },
-    addSearch: (state, action) => {
+    addSearchRecord: (state, action) => {
       const newRecord = {
         depreture: action.payload.depreture,
         arrival: action.payload.arrival,
+        date: action.payload.date,
+        passengerCount: action.payload.passengerCount,
       };
-      state.push(newRecord);
+      state.previousSearches = [...state.previousSearches, newRecord];
     },
-    // setPreviousSearchs: (state, action) => {
-    //   state.previousSearchs = action.payload;
-    //   state.departureLocation = action.payload;
-    //   // const newRecord = { arrivalLocation: state.arrivalLocation, departureLocation: state.departureLocation };
-    //   // state.push(previousSearchs(newRecord));
-    // },
   },
 });
 
-export const { setDepartureLocation, setArrivalLocation, addSearch } = searchSlice.actions;
 export default searchSlice;

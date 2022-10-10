@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { Button, Card } from '@rneui/themed';
 import React, { useState } from 'react';
 import {
@@ -10,8 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import PreviousSearches from '../components/PreviousSearches';
 import HomeScreenBg from '../images/homeScreenBg.png';
-import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
-import { addSearch } from '../slices/search';
+import { arrivalLocationSelector, departureLocationSelector, previousSearchesSelector } from '../lib/selectors';
 
 const person = [
   { key: 1, label: 1 },
@@ -29,18 +29,21 @@ const person = [
 export default function SearchScreen({ navigation }) {
   const departureLocation = useSelector(departureLocationSelector);
   const arrivalLocation = useSelector(arrivalLocationSelector);
+  const addSearchRecord = useSelector(previousSearchesSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = () => {
     dispatch(
-      addSearch({
+      addSearchRecord({
         depreture: departureLocation,
         arrival: arrivalLocation,
+        date,
+        passengerCount: person.data,
       }),
     );
+    () => navigation.navigate('MapScreen');
   };
 
   return (
@@ -103,7 +106,6 @@ export default function SearchScreen({ navigation }) {
           style={styles.button}
           flexWrap="wrap"
           title="Search"
-          // onPress={() => navigation.navigate('MapScreen')}
           onPress={onSubmit}
           disabled={arrivalLocation === null || departureLocation === null}
         />
