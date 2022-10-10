@@ -6,7 +6,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   departureLocation: null,
   arrivalLocation: null,
-  previousSearchs: [],
+  previousSearches: [],
 };
 
 const searchSlice = createSlice({

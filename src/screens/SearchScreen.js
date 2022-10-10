@@ -8,7 +8,7 @@ import ModalSelector from 'react-native-modal-selector';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux';
 
-import PreviousSearchs from '../components/PreviousSearchs';
+import PreviousSearches from '../components/PreviousSearches';
 import HomeScreenBg from '../images/homeScreenBg.png';
 import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
 import { addSearch } from '../slices/search';
@@ -108,7 +108,7 @@ export default function SearchScreen({ navigation }) {
           disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
-      <PreviousSearchs />
+      <PreviousSearches />
     </View>
   );
 }
