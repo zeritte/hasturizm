@@ -26,7 +26,7 @@ const searchSlice = createSlice({
         date: action.payload.date,
         passengerCount: action.payload.passengerCount,
       };
-      state.previousSearches = [...state.previousSearches, newRecord];
+      state.previousSearches = [newRecord, ...state.previousSearches];
     },
   },
 });
