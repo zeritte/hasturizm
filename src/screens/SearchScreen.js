@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import PreviousSearches from '../components/PreviousSearches';
 import HomeScreenBg from '../images/homeScreenBg.png';
-import { arrivalLocationSelector, departureLocationSelector, previousSearchesSelector } from '../lib/selectors';
+import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
+import searchSlice from '../slices/search';
 
 const person = [
   { key: 1, label: 1 },
@@ -29,23 +30,22 @@ const person = [
 export default function SearchScreen({ navigation }) {
   const departureLocation = useSelector(departureLocationSelector);
   const arrivalLocation = useSelector(arrivalLocationSelector);
-  const addSearchRecord = useSelector(previousSearchesSelector);
+  // const addSearchRecord = useSelector(previousSearchesSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   const onSubmit = () => {
     dispatch(
-      addSearchRecord({
+      searchSlice.actions.addSearchRecord({
         depreture: departureLocation,
         arrival: arrivalLocation,
-        date,
+        // date,
         passengerCount: person.data,
       }),
     );
-    () => navigation.navigate('MapScreen');
+    navigation.navigate('MapScreen');
   };
-
   return (
     <View>
       <ImageBackground
@@ -53,7 +53,7 @@ export default function SearchScreen({ navigation }) {
         style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
-      <Card borderRadius={30} marginTop={100}>
+      <Card borderRadius={30} marginTop={1}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('SearchLocation', { selectionType: 'departure' })}
@@ -99,7 +99,12 @@ export default function SearchScreen({ navigation }) {
           />
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} selectedKey={1} />
+            <ModalSelector
+              data={person}
+              selectedKey={1}
+              // eslint-disable-next-line no-alert
+              onChange={(option) => { console.log(`${option.label} (${option.key}) nom nom nom`); }}
+            />
           </TouchableOpacity>
         </View>
         <Button
