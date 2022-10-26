@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import {
-  View, FlatList, StyleSheet, Text, SafeAreaView,
+  FlatList, StyleSheet, SafeAreaView, View, Text,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -35,22 +35,12 @@ export default function PreviousSearches() {
 
   const data = preSearchArr.slice(0, 5);
   console.log(data);
-  const Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-  const renderItem = ({ item }) => (
-    <View>
-      <Item title={item.title} />
-    </View>
-  );
 
   return (
     <SafeAreaView>
       <FlatList
         data={data}
-        renderItem={renderItem}
+        renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
         keyExtractor={(item) => item.id}
       />
     </SafeAreaView>
