@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import {
-  FlatList, StyleSheet, SafeAreaView, View, Text,
+  FlatList, StyleSheet, SafeAreaView, Text,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
