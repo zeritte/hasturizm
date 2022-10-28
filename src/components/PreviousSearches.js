@@ -1,8 +1,9 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import {
-  FlatList, StyleSheet, SafeAreaView, Text,
+  FlatList, StyleSheet, SafeAreaView, Text, View,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector } from 'react-redux';
 
 import { previousSearchesSelector } from '../lib/selectors';
@@ -22,7 +23,16 @@ export default function PreviousSearches() {
     <SafeAreaView>
       <FlatList
         data={data}
-        renderItem={({ item }) => <Text style={styles.item}>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <View style={{
+            flexDirection: 'row',
+          }}
+          >
+            <Text style={styles.item}>{item.depreture}</Text>
+            <Ionicons style={styles.icon} name="swap-horizontal-outline" />
+            <Text style={styles.item}>{item.arrival}</Text>
+          </View>
+        )}
         keyExtractor={(item) => item.id}
       />
     </SafeAreaView>
@@ -34,12 +44,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    backgroundColor: 'white',
+    textAlign: 'center',
+    alignItems: 'center',
     padding: 5,
     marginVertical: 5,
     marginHorizontal: 5,
-  },
-  title: {
     fontSize: 20,
+    flex: 0.5,
+  },
+  icon: {
+    textAlign: 'center',
+    alignItems: 'center',
+    padding: 5,
+    marginVertical: 5,
+    fontSize: 25,
+    flex: 0.2,
   },
 });
