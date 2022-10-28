@@ -12,12 +12,12 @@ export default function PreviousSearches() {
   const added = useSelector(previousSearchesSelector);
 
   const preSearchArr = added.map((item, index) => ({
-    title: `${added[index]?.depreture.name ?? ' '}        ${added[index]?.arrival.name ?? ' '}`,
-    id: 1,
+    depreture: `${added[index]?.depreture.name ?? ' '}`,
+    arrival: `${added[index]?.arrival.name ?? ' '}`,
+    id: added[index].id,
   }));
 
   const data = preSearchArr.slice(0, 5);
-  console.log(data);
 
   return (
     <SafeAreaView>
