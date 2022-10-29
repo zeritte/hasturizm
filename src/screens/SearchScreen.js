@@ -30,7 +30,6 @@ const person = [
 export default function SearchScreen({ navigation }) {
   const departureLocation = useSelector(departureLocationSelector);
   const arrivalLocation = useSelector(arrivalLocationSelector);
-  // const addSearchRecord = useSelector(previousSearchesSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [personCount, setPersonCount] = useState(1);

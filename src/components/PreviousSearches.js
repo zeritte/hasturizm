@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 /* eslint-disable no-plusplus */
+import { Card } from '@rneui/base';
 import React from 'react';
 import {
   FlatList, StyleSheet, SafeAreaView, Text, View,
@@ -22,18 +24,20 @@ export default function PreviousSearches() {
   const data = preSearchArr.slice(0, 5);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ marginBottom: 1000 }}>
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <View style={{
-            flexDirection: 'row',
-          }}
-          >
-            <Text style={styles.item}>{item.depreture}</Text>
-            <Ionicons style={styles.icon} name="swap-horizontal-outline" />
-            <Text style={styles.item}>{item.arrival}</Text>
-          </View>
+          <Card borderRadius={30}>
+            <View style={{
+              flexDirection: 'row',
+            }}
+            >
+              <Ionicons style={styles.icon} name="time-outline" />
+              <Text style={styles.item}>{item.depreture}</Text>
+              <Ionicons style={styles.icon} name="arrow-forward-outline" />
+              <Text style={styles.item}>{item.arrival}</Text>
+            </View>
             <View style={{
               flexDirection: 'row',
             }}
@@ -51,7 +55,7 @@ export default function PreviousSearches() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'relative',
   },
   item: {
     textAlign: 'center',
@@ -67,6 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     marginVertical: 5,
+    marginHorizontal: 5,
     fontSize: 25,
     flex: 0.2,
   },
