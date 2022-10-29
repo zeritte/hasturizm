@@ -33,15 +33,20 @@ export default function SearchScreen({ navigation }) {
   // const addSearchRecord = useSelector(previousSearchesSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [personCount, setPersonCount] = useState(1);
   const dispatch = useDispatch();
+  const changePersonCount = (value) => {
+    value = value.label;
+    setPersonCount(value);
+  };
 
   const onSubmit = () => {
     dispatch(
       searchSlice.actions.addSearchRecord({
         depreture: departureLocation,
         arrival: arrivalLocation,
-        // date,
-        passengerCount: person.data,
+        date,
+        passengerCount: personCount,
       }),
     );
     navigation.navigate('MapScreen');
@@ -103,8 +108,7 @@ export default function SearchScreen({ navigation }) {
             <ModalSelector
               data={person}
               selectedKey={1}
-              // eslint-disable-next-line no-alert
-              onChange={(option) => { console.log(`${option.label} (${option.key}) nom nom nom`); }}
+              onChange={changePersonCount}
             />
           </TouchableOpacity>
         </View>
