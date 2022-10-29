@@ -23,7 +23,7 @@ const searchSlice = createSlice({
       const newRecord = {
         depreture: action.payload.depreture,
         arrival: action.payload.arrival,
-        // date: action.payload.date,
+        date: action.payload.date,
         passengerCount: action.payload.passengerCount,
       };
       state.previousSearches = [newRecord, ...state.previousSearches];

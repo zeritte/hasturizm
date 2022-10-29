@@ -14,6 +14,7 @@ export default function PreviousSearches() {
   const preSearchArr = added.map((item, index) => ({
     depreture: `${added[index]?.depreture.name ?? ' '}`,
     arrival: `${added[index]?.arrival.name ?? ' '}`,
+    date: `Date: ${added[index]?.date.getDate()}.${added[index]?.date.getMonth() + 1}.${added[index]?.date.getFullYear()}`,
     id: added[index].id,
   }));
 
@@ -32,6 +33,7 @@ export default function PreviousSearches() {
             <Ionicons style={styles.icon} name="swap-horizontal-outline" />
             <Text style={styles.item}>{item.arrival}</Text>
           </View>
+              <Text style={styles.item}>{item.date}</Text>
         )}
         keyExtractor={(item) => item.id}
       />
