@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable no-param-reassign */
 import { Button, Card } from '@rneui/themed';
 import React, { useState } from 'react';
 import {
@@ -46,6 +46,7 @@ export default function SearchScreen({ navigation }) {
     );
     navigation.navigate('MapScreen');
   };
+
   return (
     <View>
       <ImageBackground
@@ -53,7 +54,7 @@ export default function SearchScreen({ navigation }) {
         style={styles.imageBackground}
       />
       <Text style={styles.headerText}>Düşük ücretlerle yolculuk seçeneklerin</Text>
-      <Card borderRadius={30} marginTop={1}>
+      <Card borderRadius={30} marginTop={100}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('SearchLocation', { selectionType: 'departure' })}
@@ -79,7 +80,7 @@ export default function SearchScreen({ navigation }) {
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
             <Text style={styles.text}>
-              {`${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`}
+              {`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`}
             </Text>
           </TouchableOpacity>
           <DatePicker
