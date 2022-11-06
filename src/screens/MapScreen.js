@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import config from 'react-native-ultimate-config';
@@ -15,7 +15,6 @@ export default function MapScreen() {
 
   return (
     <View>
-      <Text>Map Screen</Text>
       <MapView style={styles.map} initialRegion={{ ...departureLocation, ...INITIAL_DELTAS }}>
         <MapViewDirections
           origin={departureLocation}

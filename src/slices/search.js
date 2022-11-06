@@ -1,12 +1,10 @@
 /* eslint-disable no-param-reassign */
-// Params are supposed to be reassigned with redux-toolkit, which uses Immer
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   departureLocation: null,
   arrivalLocation: null,
-  previousSearchs: [],
+  previousSearches: [],
 };
 
 const searchSlice = createSlice({
@@ -19,21 +17,17 @@ const searchSlice = createSlice({
     setArrivalLocation: (state, action) => {
       state.arrivalLocation = action.payload;
     },
-    addSearch: (state, action) => {
+    addSearchRecord: (state, action) => {
       const newRecord = {
-        depreture: action.payload.depreture,
+        departure: action.payload.departure,
         arrival: action.payload.arrival,
+        date: action.payload.date,
+        passengerCount: action.payload.passengerCount,
+        id: Date.now(),
       };
-      state.push(newRecord);
+      state.previousSearches = [newRecord, ...state.previousSearches];
     },
-    // setPreviousSearchs: (state, action) => {
-    //   state.previousSearchs = action.payload;
-    //   state.departureLocation = action.payload;
-    //   // const newRecord = { arrivalLocation: state.arrivalLocation, departureLocation: state.departureLocation };
-    //   // state.push(previousSearchs(newRecord));
-    // },
   },
 });
 
-export const { setDepartureLocation, setArrivalLocation, addSearch } = searchSlice.actions;
 export default searchSlice;

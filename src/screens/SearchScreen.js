@@ -1,17 +1,17 @@
 import { Button, Card } from '@rneui/themed';
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text,
+  View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text, ScrollView,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import ModalSelector from 'react-native-modal-selector';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux';
 
-import PreviousSearchs from '../components/PreviousSearchs';
+import PreviousSearches from '../components/PreviousSearches';
 import HomeScreenBg from '../images/homeScreenBg.png';
 import { arrivalLocationSelector, departureLocationSelector } from '../lib/selectors';
-import { addSearch } from '../slices/search';
+import searchSlice from '../slices/search';
 
 const person = [
   { key: 1, label: 1 },
@@ -31,20 +31,27 @@ export default function SearchScreen({ navigation }) {
   const arrivalLocation = useSelector(arrivalLocationSelector);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [personCount, setPersonCount] = useState(1);
   const dispatch = useDispatch();
+  const changePersonCount = (value) => {
+    const count = value.label;
+    setPersonCount(count);
+  };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = () => {
     dispatch(
-      addSearch({
-        depreture: departureLocation,
+      searchSlice.actions.addSearchRecord({
+        departure: departureLocation,
         arrival: arrivalLocation,
+        date,
+        passengerCount: personCount,
       }),
     );
+    navigation.navigate('MapScreen');
   };
 
   return (
-    <View>
+    <ScrollView>
       <ImageBackground
         source={HomeScreenBg}
         style={styles.imageBackground}
@@ -76,7 +83,7 @@ export default function SearchScreen({ navigation }) {
           <Ionicons style={styles.icon} name="calendar-outline" />
           <TouchableOpacity style={styles.calendar} onPress={() => setOpen(true)}>
             <Text style={styles.text}>
-              {`${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`}
+              {`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`}
             </Text>
           </TouchableOpacity>
           <DatePicker
@@ -96,20 +103,23 @@ export default function SearchScreen({ navigation }) {
           />
           <Ionicons style={styles.icon} name="people-outline" />
           <TouchableOpacity style={styles.calendar}>
-            <ModalSelector data={person} selectedKey={1} />
+            <ModalSelector
+              data={person}
+              selectedKey={personCount}
+              onChange={changePersonCount}
+            />
           </TouchableOpacity>
         </View>
         <Button
           style={styles.button}
           flexWrap="wrap"
           title="Search"
-          // onPress={() => navigation.navigate('MapScreen')}
           onPress={onSubmit}
           disabled={arrivalLocation === null || departureLocation === null}
         />
       </Card>
-      <PreviousSearchs />
-    </View>
+      <PreviousSearches />
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
