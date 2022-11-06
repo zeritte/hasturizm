@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { Button, Card } from '@rneui/themed';
 import React, { useState } from 'react';
 import {
@@ -35,8 +34,8 @@ export default function SearchScreen({ navigation }) {
   const [personCount, setPersonCount] = useState(1);
   const dispatch = useDispatch();
   const changePersonCount = (value) => {
-    value = value.label;
-    setPersonCount(value);
+    const count = value.label;
+    setPersonCount(count);
   };
 
   const onSubmit = () => {
