@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 /* eslint-disable no-plusplus */
 import { Card } from '@rneui/base';
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
-  FlatList, StyleSheet, SafeAreaView, Text, View,
+  StyleSheet, Text, View,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector } from 'react-redux';
@@ -27,7 +27,7 @@ function PreviousSearches() {
             }}
             >
               <Ionicons style={styles.icon} name="time-outline" />
-              <Text style={styles.item}>{item.depreture}</Text>
+            <Text style={styles.item}>{item.departure}</Text>
               <Ionicons style={styles.icon} name="arrow-forward-outline" />
               <Text style={styles.item}>{item.arrival}</Text>
             </View>

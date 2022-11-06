@@ -21,7 +21,7 @@ const searchSlice = createSlice({
     },
     addSearchRecord: (state, action) => {
       const newRecord = {
-        depreture: action.payload.depreture,
+        departure: action.payload.departure,
         arrival: action.payload.arrival,
         date: action.payload.date,
         passengerCount: action.payload.passengerCount,

@@ -2,7 +2,7 @@
 import { Button, Card } from '@rneui/themed';
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text,
+  View, StyleSheet, TouchableOpacity, TextInput, ImageBackground, Text, ScrollView,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import ModalSelector from 'react-native-modal-selector';
@@ -42,7 +42,7 @@ export default function SearchScreen({ navigation }) {
   const onSubmit = () => {
     dispatch(
       searchSlice.actions.addSearchRecord({
-        depreture: departureLocation,
+        departure: departureLocation,
         arrival: arrivalLocation,
         date,
         passengerCount: personCount,
@@ -52,7 +52,7 @@ export default function SearchScreen({ navigation }) {
   };
 
   return (
-    <View>
+    <ScrollView>
       <ImageBackground
         source={HomeScreenBg}
         style={styles.imageBackground}
@@ -106,7 +106,7 @@ export default function SearchScreen({ navigation }) {
           <TouchableOpacity style={styles.calendar}>
             <ModalSelector
               data={person}
-              selectedKey={1}
+              selectedKey={personCount}
               onChange={changePersonCount}
             />
           </TouchableOpacity>
@@ -120,7 +120,7 @@ export default function SearchScreen({ navigation }) {
         />
       </Card>
       <PreviousSearches />
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
