@@ -46,6 +46,7 @@ export default () => (
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
+          headerShown: false,
         })}
       >
         <Tab.Screen name="Search" component={SearchStackScreen} />
