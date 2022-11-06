@@ -1,5 +1,4 @@
-/* eslint-disable no-shadow */
-import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import searchSlice from '../slices/search';
 
