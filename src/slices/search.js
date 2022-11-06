@@ -1,6 +1,4 @@
 /* eslint-disable no-param-reassign */
-// Params are supposed to be reassigned with redux-toolkit, which uses Immer
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -25,6 +23,7 @@ const searchSlice = createSlice({
         arrival: action.payload.arrival,
         date: action.payload.date,
         passengerCount: action.payload.passengerCount,
+        id: Date.now(),
       };
       state.previousSearches = [newRecord, ...state.previousSearches];
     },
