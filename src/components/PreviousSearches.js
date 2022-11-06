@@ -10,18 +10,11 @@ import { useSelector } from 'react-redux';
 
 import { previousSearchesSelector } from '../lib/selectors';
 
-export default function PreviousSearches() {
-  const added = useSelector(previousSearchesSelector);
+function PreviousSearches() {
+  const previousSearches = useSelector(previousSearchesSelector);
 
-  const preSearchArr = added.map((item, index) => ({
-    depreture: `${added[index]?.depreture.name ?? ' '}`,
-    arrival: `${added[index]?.arrival.name ?? ' '}`,
-    person: `Person: ${added[index]?.passengerCount ?? ' '}`,
-    date: `Date: ${added[index]?.date.getDate()}.${added[index]?.date.getMonth() + 1}.${added[index]?.date.getFullYear()}`,
-    id: added[index].id,
-  }));
-
-  const data = preSearchArr.slice(0, 5);
+  const data = useMemo(() => previousSearches.map((item) => ({
+  })).slice(0, 5), [previousSearches]);
 
   return (
     <SafeAreaView style={{ marginBottom: 1000 }}>
@@ -53,10 +46,10 @@ export default function PreviousSearches() {
   );
 }
 
+const MemoizedPreviousSearches = React.memo(PreviousSearches);
+export default MemoizedPreviousSearches;
+
 const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-  },
   item: {
     textAlign: 'center',
     alignItems: 'center',
