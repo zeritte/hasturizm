@@ -11,6 +11,7 @@ import MapScreen from './src/screens/MapScreen';
 import MyTripsScreen from './src/screens/MyTripsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import PublishScreen from './src/screens/PublishScreen';
+import SearchResultScreen from './src/screens/SearchResultScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import SelectLocationScreen from './src/screens/SelectLocationScreen';
 
@@ -23,6 +24,7 @@ function SearchStackScreen() {
       <Stack.Screen name="SearchInsideStack" component={SearchScreen} />
       <Stack.Screen name="SearchLocation" component={SelectLocationScreen} />
       <Stack.Screen name="MapScreen" component={MapScreen} />
+      <Stack.Screen name="SearchResultScreen" component={SearchResultScreen} />
     </Stack.Navigator>
   );
 }
