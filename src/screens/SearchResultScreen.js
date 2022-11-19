@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import ResultCard from '../components/ResultCard';
+
 export default function SearchResultScreen({ navigation }) {
   return (
     <ScrollView>
@@ -26,6 +28,11 @@ export default function SearchResultScreen({ navigation }) {
           </View>
         </View>
       </Card>
+      <ResultCard />
+      <ResultCard />
+      <ResultCard />
+      <ResultCard />
+      <ResultCard />
     </ScrollView>
   );
 }
