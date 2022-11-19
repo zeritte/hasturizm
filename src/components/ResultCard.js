@@ -8,24 +8,38 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 function ResultCard() {
   return (
     <>
-      <Card borderRadius={30}>
+      <Card borderRadius={30} backgroundColor="blue">
+        <View alignItems="center" flexDirection="row">
+          <View flexDirection="column">
+            <View flexDirection="row">
+              <View>
+                <Text style={styles.item}>09.00</Text>
+              </View>
+              <View>
+                <Text style={styles.item}>İstanbul</Text>
+              </View>
+            </View>
+            <View flexDirection="row">
+              <View>
+                <Text style={styles.item}>15.30</Text>
+              </View>
+              <View>
+                <Text style={styles.item}>Paris</Text>
+              </View>
+            </View>
+            <View flexDirection="row">
         <Image
-          style={styles.image}
-          source={{
-            uri: 'https://i.pravatar.cc/300',
-          }}
+                style={{ width: 50, height: 50, borderRadius: 50 }}
+                source={{ uri: 'https://i.pravatar.cc/300' }}
         />
-        <Text style={styles.text}>name</Text>
-        {/* <View style={styles.view}>
-          <Ionicons style={styles.icon} name="time-outline" />
-          <Text numberOfLines={1} style={styles.item}>fsd</Text>
-          <Ionicons style={styles.icon} name="arrow-forward-outline" />
-          <Text numberOfLines={1} style={styles.item}>sf</Text>
+              <Text style={styles.item}>BlaBlaCar</Text>
+              <Ionicons style={styles.icon} name="battery-charging-outline" />
         </View>
-        <View style={styles.view}>
-          <Text style={styles.item}>sffdsf</Text>
-          <Text style={styles.item}>dfsf</Text>
-        </View> */}
+          </View>
+          <View>
+            <Text style={styles.price}>50 $</Text>
+          </View>
+        </View>
       </Card>
     </>
   );
