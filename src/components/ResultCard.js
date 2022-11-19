@@ -28,13 +28,13 @@ function ResultCard() {
               </View>
             </View>
             <View flexDirection="row">
-        <Image
+              <Image
                 style={{ width: 50, height: 50, borderRadius: 50 }}
                 source={{ uri: 'https://i.pravatar.cc/300' }}
-        />
+              />
               <Text style={styles.item}>BlaBlaCar</Text>
               <Ionicons style={styles.icon} name="battery-charging-outline" />
-        </View>
+            </View>
           </View>
           <View>
             <Text style={styles.price}>50 $</Text>
@@ -49,24 +49,24 @@ export default ResultCard;
 
 const styles = StyleSheet.create({
   item: {
-    textAlign: 'center',
+    textAlign: 'left',
     alignItems: 'center',
     padding: 5,
     marginVertical: 5,
     marginHorizontal: 5,
     fontSize: 20,
-    flex: 0.5,
   },
   icon: {
-    textAlign: 'center',
-    alignItems: 'center',
-    padding: 5,
-    marginVertical: 5,
-    marginHorizontal: 5,
-    fontSize: 25,
-    flex: 0.2,
+    fontSize: 30,
+    marginTop: 10,
+    marginLeft: 150,
   },
   view: {
     flexDirection: 'row',
+  },
+  price: {
+    marginBottom: 100,
+    marginLeft: -40,
+    fontSize: 20,
   },
 });

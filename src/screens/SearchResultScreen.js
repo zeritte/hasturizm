@@ -10,7 +10,7 @@ import ResultCard from '../components/ResultCard';
 export default function SearchResultScreen({ navigation }) {
   return (
     <ScrollView>
-      <Card borderRadius={30}>
+      <Card borderRadius={30} backgroundColor="blue">
         <View alignItems="center" flexDirection="row">
           <TouchableOpacity onPress={() => navigation.navigate('SearchInsideStack')}>
             <Ionicons style={styles.icon} name="chevron-back-outline" />
@@ -28,6 +28,7 @@ export default function SearchResultScreen({ navigation }) {
           </View>
         </View>
       </Card>
+      <Text style={styles.text}>Today's Date</Text>
       <ResultCard />
       <ResultCard />
       <ResultCard />
@@ -68,6 +69,10 @@ const styles = StyleSheet.create({
   },
   view: {
     flexDirection: 'row',
+  },
+  text: {
+    fontSize: 30,
+    marginLeft: 20,
   },
 });
 
