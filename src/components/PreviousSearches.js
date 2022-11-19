@@ -25,9 +25,9 @@ function PreviousSearches() {
         <Card borderRadius={30} key={item.id}>
           <View style={styles.view}>
             <Ionicons style={styles.icon} name="time-outline" />
-            <Text style={styles.item}>{item.departure}</Text>
+            <Text numberOfLines={1} style={styles.item}>{item.departure}</Text>
             <Ionicons style={styles.icon} name="arrow-forward-outline" />
-            <Text style={styles.item}>{item.arrival}</Text>
+            <Text numberOfLines={1} style={styles.item}>{item.arrival}</Text>
           </View>
           <View style={styles.view}>
             <Text style={styles.item}>{item.date}</Text>

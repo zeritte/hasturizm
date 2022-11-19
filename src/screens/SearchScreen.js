@@ -47,7 +47,8 @@ export default function SearchScreen({ navigation }) {
         passengerCount: personCount,
       }),
     );
-    navigation.navigate('MapScreen');
+    // navigation.navigate('MapScreen');
+    navigation.navigate('SearchResultScreen');
   };
 
   return (
