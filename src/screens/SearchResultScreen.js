@@ -1,13 +1,13 @@
 import { Card } from '@rneui/base';
 import React from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
+  View, Text, StyleSheet, TouchableOpacity, ScrollView,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function SearchResultScreen({ navigation }) {
   return (
-    <>
+    <ScrollView>
       <Card borderRadius={30}>
         <View alignItems="center" flexDirection="row">
           <TouchableOpacity onPress={() => navigation.navigate('SearchInsideStack')}>
@@ -26,7 +26,7 @@ export default function SearchResultScreen({ navigation }) {
           </View>
         </View>
       </Card>
-    </>
+    </ScrollView>
   );
 }
 
